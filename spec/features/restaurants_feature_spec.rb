@@ -31,6 +31,17 @@ context 'creating restaurants' do
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content 'KFC'
   end
+  scenario 'a user tries to create a restauarant with a name less than 3 chars' do
+    visit '/restaurants'
+    click_link 'Add a restaurant'
+    fill_in 'Name', with: 'KF'
+    click_button 'Create Restaurant'
+    expect(page).to have_content 'error'
+    expect(page).not_to have_css 'h2' , text: 'kf'
+  end
+  scenario 'a user tries to create a restaurant that already exists' do
+    
+  end
 end
 
 context 'viewing restaurants' do
@@ -46,21 +57,41 @@ end
 
 context 'editing restaurants' do
 
-  let!(:kfc) {Restaurant.create name: 'KFC', description: 'Deep fried goodness'}
+  before {Restaurant.create name: 'KFC', description: 'Deep fried goodness'}
 
   scenario 'let a user edit a restaurant' do
     visit '/restaurants'
+    click_link 'KFC'
     click_link 'Edit KFC'
     fill_in 'Name', with: 'Kentucky Fried Chicken'
     fill_in 'Description', with: 'Deep fried goodness'
     click_button 'Update Restaurant'
-    click_link 'Kentucky Fried Chicken'
     expect(page).to have_content('Kentucky Fried Chicken')
     expect(page).to have_content('Deep fried goodness')
-    expect(current_path).to eq "/restaurants/#{kfc.id}"
+    expect(current_path).to eq "/restaurants"
   end
 
 end
+
+context 'deleting restaurants' do
+
+  before do
+    Restaurant.create(name: 'KFC', description: 'Deep fried goodness')
+  end
+
+  scenario 'let a user delete a restaurant' do
+    visit '/restaurants'
+    click_link 'KFC'
+    click_link 'Delete KFC'
+    expect(page).not_to have_content('Kentucky Fried Chicken')
+    expect(page).not_to have_content('Deep fried goodness')
+    expect(current_path).to eq '/restaurants'
+  end
+
+end
+
+
+
 
 
 

@@ -1,2 +1,5 @@
 %p= @restaurant.name
 %p= @restaurant.description
+
+%h5= link_to "Edit #{@restaurant.name}", edit_restaurant_path(@restaurant.id)
+%h5= link_to "Delete #{@restaurant.name}", restaurant_path(@restaurant.id), method: :delete
