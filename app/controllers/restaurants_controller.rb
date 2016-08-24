@@ -12,6 +12,7 @@ before_action :authenticate_user!, :except => [:index, :show]
 
   def create
     @restaurant = Restaurant.create(restaurant_params)
+    @restaurant.user = current_user
     if @restaurant.save
       redirect_to restaurants_path
     else
@@ -29,15 +30,25 @@ before_action :authenticate_user!, :except => [:index, :show]
 
   def update
     @restaurant = Restaurant.find(params[:id])
-    @restaurant.update(restaurant_params)
-    redirect_to restaurants_path
+    if @restaurant.user == current_user
+      @restaurant.update(restaurant_params)
+      redirect_to restaurants_path
+    else
+      redirect_to edit_restaurant_path(@restaurant.id)
+      flash[:notice] = 'Sorry, you can only edit restaurants you created'
+    end
   end
 
   def destroy
     @restaurant = Restaurant.find(params[:id])
-    @restaurant.destroy
-    flash[:notice] = 'Restaurant deleted successfully'
-    redirect_to '/restaurants'
+    if @restaurant.user == current_user
+      @restaurant.destroy
+      redirect_to restaurants_path
+      flash[:notice] = 'Restaurant deleted successfully'
+    else
+      redirect_to restaurant_path(@restaurant.id)
+      flash[:notice] = 'Sorry, you can only delete restaurants you created'
+    end
   end
 
   private

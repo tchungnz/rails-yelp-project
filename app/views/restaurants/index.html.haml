@@ -2,10 +2,10 @@
   - @restaurants.all.each do |restaurant|
     %h2= link_to restaurant.name, restaurant_path(restaurant)
     %h4= restaurant.description
+    - if current_user && !current_user.has_reviewed?(restaurant)
+      %h5= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant)
     - restaurant.reviews.each do |review|
       %h5= "#{review.rating}*: #{review.thoughts}"
-    %h5= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant)
-
 - else
   No restaurants yet!
 

@@ -1,20 +1,15 @@
 require 'rails_helper'
+require 'features/feature_spec_helper'
 
 feature 'reviewing' do
-
-  before do
-    visit('/')
-    click_link('Sign up')
-    fill_in('Email', with: 'test@example.com')
-    fill_in('Password', with: 'testtest')
-    fill_in('Password confirmation', with: 'testtest')
-    click_button('Sign up')
-    Restaurant.create(name: "Georgia's Gastropub", description: 'Really good pork')
-  end
+    before do
+      sign_up
+      create_new_restaurant
+    end
 
   scenario 'a user wants to review an existing restaurant' do
     visit '/restaurants'
-    click_link "Review Georgia's Gastropub"
+    click_link "Review KFC"
     fill_in 'Thoughts', with: 'really average'
     select '1', from: 'Rating'
     click_button 'Submit Review'

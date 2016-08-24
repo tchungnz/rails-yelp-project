@@ -1,0 +1,48 @@
+.navbar-default {
+  background-color: red;
+}
+
+.navbar-header {
+  width: 100px;
+}
+
+.navbar-brand {
+  padding: 0;
+}
+
+.navbar-brand img {
+  width: 70px;
+  height: auto;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: black;
+    font-weight: bold;
+}
+
+h3 {
+  text-align: center;
+  text-transform: uppercase;
+  color: black;
+}
+a {
+  color: inherit;
+}
+
+.list-group-item-heading {
+  border-bottom-style: solid;
+  border-bottom-width: thin;
+  border-bottom-color: grey;
+}
+
+.description {
+  font-style: italic;
+}
+
+.btn-danger {
+  background-color: red;
+}
+
+.review-link {
+  color:red;
+}
