@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'features/feature_spec_helper'
 
 feature 'endorsements' do
 
