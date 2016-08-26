@@ -11,7 +11,7 @@ $(document).ready(function() {
       var endorsementCount = $(this).siblings('.endorsements-count');
 
       $.post(this.href, function(response){
-        endorsementCount.text(response.new_endorsement_count);
+        endorsementCount.text("("+ response.new_endorsement_count);
     });
   });
 });

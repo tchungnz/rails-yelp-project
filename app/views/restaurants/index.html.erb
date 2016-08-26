@@ -21,7 +21,7 @@
                 <h5>
                 <%= "#{star_rating(review.rating)}: #{review.thoughts}" %>
                 <%= link_to "Endorse Review", review_endorsements_path(review), class: 'endorse-review' %>
-                <span class='endorsements-count'> (<%= review.endorsements.count%> <%= 'endorsement'.pluralize(review.endorsements.count)%>)</span>
+                <span class='endorsements-count'> (<%= review.endorsements.count%> </span> <span><%= 'endorsement'.pluralize(review.endorsements.count)%>)</span>
                 </h5>
               <% end %>
             <% end %>
