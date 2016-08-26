@@ -17,4 +17,11 @@ feature 'reviewing' do
     expect(page).to have_content 'really average'
   end
 
+  scenario 'displays an average rating for all reviews' do
+    leave_review('so so', '3')
+    sign_up2
+    leave_review('great', '5')
+    expect(page).to have_content('Average rating: ★★★★☆')
+  end
+
 end

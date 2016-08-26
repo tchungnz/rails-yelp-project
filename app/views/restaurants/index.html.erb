@@ -11,12 +11,17 @@
           <% if @restaurants.all.any? %>
             <% @restaurants.all.each do |restaurant| %>
               <h3 class="list-group-item-heading"> <%= link_to restaurant.name, restaurant_path(restaurant) %> </h3>
-              <p class="description"> <%= restaurant.description %> </p>
+              <p class="rating"> Average rating: <span id="stars"><%= star_rating(restaurant.average_rating)%> (<%=restaurant.reviews.count%> <%='Review'.pluralize(restaurant.reviews.count)%>)</span></p><br>
+              <p class="description"> <%= image_tag restaurant.image.url(:thumb) %> <%= restaurant.description %> </p>
               <% if current_user && !current_user.has_reviewed?(restaurant) %>
-                <h5 class="review-link"> <%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %> </h5>
+                <button type="button"class="btn btn-danger btn-xs"> <%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %> </button>
               <% end %>
               <% restaurant.reviews.each do |review| %>
-                <h5> <%= "#{review.rating}*: #{review.thoughts}" %> </h5>
+                <h5>
+                <%= "#{star_rating(review.rating)}: #{review.thoughts}" %>
+                <%= link_to "Endorse Review", review_endorsements_path(review), class: 'endorse-review' %>
+                <span class='endorsements-count'> (<%= review.endorsements.count%> <%= 'endorsement'.pluralize(review.endorsements.count)%>)</span>
+                </h5>
               <% end %>
             <% end %>
           <% else %>

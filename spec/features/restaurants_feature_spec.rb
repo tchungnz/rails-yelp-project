@@ -31,6 +31,11 @@ feature 'restaurants' do
       expect(current_path).to eq '/restaurants'
       expect(page).to have_content 'KFC'
     end
+    scenario 'prompts user to fill out a form, then displays the new restaraunt' do
+      create_new_restaurant
+      expect(current_path).to eq '/restaurants'
+      expect(page).to have_content 'KFC'
+    end
     scenario 'a user tries to create a restauarant with a name less than 3 chars' do
       visit '/restaurants'
       click_link 'Add a restaurant'
@@ -38,6 +43,15 @@ feature 'restaurants' do
       click_button 'Create Restaurant'
       expect(page).to have_content 'error'
       expect(page).not_to have_css 'h2' , text: 'kf'
+    end
+    scenario 'a user uploads an image with their restaurant' do
+      visit('/restaurants')
+      click_link 'Add a restaurant'
+      fill_in('Name', with: 'KFC')
+      fill_in('Description', with: "Deep fried goodness")
+      attach_file('Image', File.absolute_path('./public/system/restaurants/images/000/000/001/thumb/dan_le_noir.jpg'))
+      click_button('Create Restaurant')
+      expect(page).to have_css("img[src*='dan_le_noir.jpg']")
     end
   end
 

@@ -20,11 +20,16 @@
     font-weight: bold;
 }
 
+.btn-danger {
+  background-color: red;
+}
+
 h3 {
   text-align: center;
   text-transform: uppercase;
   color: black;
 }
+
 a {
   color: inherit;
 }
@@ -35,14 +40,21 @@ a {
   border-bottom-color: grey;
 }
 
+#stars {
+  color:red;
+  padding-left: 5px;
+}
+
 .description {
   font-style: italic;
 }
 
-.btn-danger {
-  background-color: red;
+.description img {
+  float: left;
+  padding-right: 10px;
+  padding-bottom : 0px;
 }
 
-.review-link {
-  color:red;
+.endorse-review {
+  color: red;
 }
