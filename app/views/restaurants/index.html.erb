@@ -7,6 +7,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
+          <h1 id="brandname">TrueReviews4U</h1>
           <button type="button"class="btn btn-danger"> <%= link_to "Add a restaurant", new_restaurant_path %> </button>
           <% if @restaurants.all.any? %>
             <% @restaurants.all.each do |restaurant| %>

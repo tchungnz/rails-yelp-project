@@ -20,12 +20,17 @@
 }
 
 .navbar-brand {
-  font-size: 40px;
+  font-size: 20px;
 }
 
 .navbar-default .navbar-nav > li > a {
     color: black;
     font-weight: bold;
+}
+
+#brandname {
+  text-align: center;
+  color: red;
 }
 
 .btn-danger {
