@@ -1,24 +1,9 @@
-# README
+Yelp Clone
+=================
+A web app clone based on the restaurant review website Yelp. The app was built using Rails and test-driven using Rspec and Capybara.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Click here to see a live version on Heroku.](https://mighty-brushlands-39312.herokuapp.com/)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Project background
+-----
+This was my first rails application and was built as part of the Makers Academy course (week 7).
